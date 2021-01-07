@@ -19,42 +19,30 @@ res.json(allPosts)
     }
 })
 
-//Guest feed
-router.get('/guestfeed', async (req,res) => {
-    try {
-const allPosts = await Post.find()
-res.json(allPosts)
-    }
-    catch(err) {
-        res.status(500).json({error:err.message}) 
-    }
-})
-
-
 //Individual Posts
-router.get('/profile', auth, async (req,res) => {
+/*router.get('/profile', auth, async (req,res) => {
     try {
-const ownPost = Post.find({author:req.user.id})
+const ownPost = Post.find({userName:req.user})
 res.json(ownPost)
     }
     catch(err) {
         res.status(500).json({error:err.message}) 
     }
-})
+}) */
 
 //Make a new post
 router.post('/createpost',auth, async (req,res) => {
 try {
-    let {title, description, location, salary, phonenum, photo} = req.body
+    let {title, description, location, salary, phonenum, photo, userName} = req.body
 
     //Check for all required fields
-    if( !title || !description || !location || !salary || !phonenum || !photo) {
+    if( !title || !description || !location || !salary || !phonenum || !photo || !userName) {
         res.status(400).json({msg: "Add all of the required fields"})
     }
     
     //Create post
     const newPost = new Post({ 
-        title,description,location,salary,phonenum,photo,
+        title,description,location,salary,phonenum,photo,userName, reserved
     })
     
     const savedPost = await newPost.save()
@@ -77,27 +65,7 @@ router.delete('/deletepost/:id', auth, async (req,res) => {
     }
 })
 
-//Update a post
-router.patch('/updatepost/:id', auth, async (req,res) => {
-    const updatePost = await post.findById(req.params.id)
-if(!updatePost) {
-    res.status(400).json({message: "Post not found"})
-} else{
-   Post.findOneAndUpdate({_id: req.params.id}, {
-      title: req.body.title,
-      description: req.body.description,
-      location: req.body.location,
-      salary: req.body.salary,
-      phonenum: req.body.phonenum,
-      photo: req.body.photo,
-   }).then(result => {
-       res.json(result)
-   }).catch(err => {
-    res.status(500).json({error:err.message}) 
-   })
 
-}
-})
 
 
 module.exports = router

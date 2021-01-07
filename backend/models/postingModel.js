@@ -1,6 +1,4 @@
 const mongoose = require('mongoose')
-const {ObjectId} = mongoose.Schema.Types
-
 
 const postSchema = new mongoose.Schema({
 title: {
@@ -15,8 +13,8 @@ location: {
     type: String,
     required: true
 },
-userId: {
-    type: ObjectId,
+userName: {
+    type: String,
     required:true
 }, 
 salary: {
@@ -30,6 +28,10 @@ photo: {
 phonenum: {
     type: String,
     required: true
+}, 
+reserved: {
+    type: Boolean,
+    default: false
 }
 },
 {timestamps: true})

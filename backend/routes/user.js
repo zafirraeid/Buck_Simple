@@ -96,7 +96,7 @@ catch(err) {
 })
 
 //Updating User
-router.patch('/update/:id', async (req,res) => {  
+router.patch('/update/:id',auth, async (req,res) => {  
 const updateUser = await User.findById(req.params.id)
 if(!updateUser) {
     res.status(400).json({message: "User not found"})
@@ -116,6 +116,31 @@ const hashedPass = await bcrypt.hash(updateUser.password, salt)
 
 }
 
+})
+
+//Token Validity
+router.post('/validToken',async (req,res) => {
+    try{
+        const token = req.header('x-auth-token')
+        if(!token) {
+            res.json(false)
+        }
+        const checkTkn = jwt.verify(token, process.env.JWT)
+        
+        if(!checkTkn) {
+            res.json(false)
+        }
+        
+        const user =  await User.findById(checkTkn.id)
+        if(!user) {
+            res.json(false)
+        } else {
+            res.json(true)
+        }
+    }
+    catch(err) {
+        res.status(500).json({error: err.message})
+    }
 })
 
 module.exports = router
