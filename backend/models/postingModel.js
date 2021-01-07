@@ -15,23 +15,24 @@ location: {
     type: String,
     required: true
 },
-author: {
+userId: {
     type: ObjectId,
-    ref: 'User'
+    required:true
 }, 
 salary: {
     type: Number,
     required: true
 },
-img: {
+photo: {
     type: String,
-    required: false
+    required: true
 },
 phonenum: {
     type: String,
     required: true
 }
-})
+},
+{timestamps: true})
 
 
 module.exports = Post = mongoose.model('Post', postSchema)
