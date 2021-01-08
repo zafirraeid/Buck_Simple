@@ -1,14 +1,21 @@
 import React from 'react'
+import Navbar from '../components/NavBar/NavBar'
+import HeroSection from '../components/HeroSection'
+
+
 
 const Home = () => {
     return (
         <>
-           <div>
-               
-              <h1>Hellos</h1> 
-               </div> 
+        
+          <Navbar/>
+          <HeroSection/>
+   
+         
+          
         </>
     )
 }
 
 export default Home
+

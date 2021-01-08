@@ -7,7 +7,6 @@ import SignIn from './pages/signin'
 import Feed from './pages/feed'
 import UserContext from "./context/UserContext"
 
-
 function App() {
 const [userData, setUserData] = useState({token: undefined, user: undefined})
 useEffect(()=> {
