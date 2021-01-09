@@ -1,11 +1,26 @@
 import React, { useState } from "react";
+import { useHistory, Link, scrollIntoView} from "react-router-dom";
 import styled from "styled-components";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const history = useHistory()
+  const signin = () => history.push('/signin')
+  const signup = () => history.push('/signup')
+  function topFunction() {
+    document.getElementById("about").scrollIntoView();
+    
+  }
+  
+  function topFunction2() {
+    document.getElementById("footer").scrollIntoView();
+    
+  }
+
   return (
     <Nav>
-      <Logo href="">
+      <Logo>
         Buck$imple
       </Logo>
       <Hamburger onClick={() => setIsOpen(!isOpen)}>
@@ -14,10 +29,10 @@ const Navbar = () => {
         <span />
       </Hamburger>
       <Menu isOpen={isOpen}>
-        <MenuLink href="">About Us</MenuLink>
-        <MenuLink href="">Contact Us</MenuLink>
-        <MenuLink href="">Sign In</MenuLink>
-        <MenuLink href="">Sign Up</MenuLink>
+        <MenuLink onClick = {topFunction}>About Us</MenuLink>
+        <MenuLink onClick = {topFunction2}>Contact Us</MenuLink>
+        <MenuLink onClick = {signin} >Sign In</MenuLink>
+        <MenuLink onClick = {signup}>Sign Up</MenuLink>
       </Menu>
     </Nav>
   );
@@ -25,18 +40,18 @@ const Navbar = () => {
 
 export default Navbar;
 
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
   padding: 1rem 2rem;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
   color: #ffffff;
   transition: all 0.3s ease-in;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-family: 'Noto Sans JP', sans-serif;
   width: 100%;
   &:hover {
-    color: #072b3b;
+    color: #151bb3;
   }
 `;
 
@@ -61,7 +76,7 @@ const Logo = styled.a`
   font-family: 'Noto Sans JP', sans-serif;
   text-decoration: none;
   font-weight: 800;
-  font-size: 1.7rem;
+  font-size: 2rem;
   span {
     font-weight: 300;
     font-size: 1.3rem;

@@ -21,10 +21,6 @@ salary: {
     type: Number,
     required: true
 },
-photo: {
-    type: String,
-    required: true
-},
 phonenum: {
     type: String,
     required: true

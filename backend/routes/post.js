@@ -33,16 +33,16 @@ res.json(ownPost)
 //Make a new post
 router.post('/createpost',auth, async (req,res) => {
 try {
-    let {title, description, location, salary, phonenum, photo, userName} = req.body
+    let {title, description, location, salary, phonenum,  userName} = req.body
 
     //Check for all required fields
-    if( !title || !description || !location || !salary || !phonenum || !photo || !userName) {
+    if( !title || !description || !location || !salary || !phonenum ||  !userName) {
         res.status(400).json({msg: "Add all of the required fields"})
     }
     
     //Create post
     const newPost = new Post({ 
-        title,description,location,salary,phonenum,photo,userName, reserved
+        title,description,location,salary,phonenum,userName, reserved
     })
     
     const savedPost = await newPost.save()
