@@ -6,4 +6,4 @@ Buck$imple is a full-stack MERN web application developed to tackle this very pr
 
 Buck$imple features a database created in MongoDB which contains user information and postings information. Node and Express were used to develop the server and create a REST API to send HTTP requests from the frontend to the backend. Finally, I built a visually-appealing frontend with React, hooks and styled components. User Sign In and Sign Up has been implemented to identify users on the website and also to gain the ability to post as it is impossible to create a post without making an account. JWT and hashed passwords have also been included to prevent unauthorized access and boost security.
 
-<img src = "pictures/image1.png" alt = "Home">
+![Home](pictures/image1.png)
